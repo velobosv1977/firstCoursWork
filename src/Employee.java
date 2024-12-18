@@ -1,16 +1,18 @@
-import java.util.Objects;
-
 public class Employee {
-    private Integer id;
-    private String lastName;
-    private String firstName;
-    private String patronymic;
-    private Integer departmentNumber;
-    private Integer salary;
+    // статический счётчик ID
+    private static int idNumber = 1;
+
+    private final int id;
+    private final String lastName;
+    private final String firstName;
+    private final String patronymic;
+    private int departmentNumber;
+    private int salary;
 
 
-    public Employee(String lastName, String firstName, String patronymic, Integer departmentNumber, Integer salary) {
-        this.id = id;
+    public Employee(String lastName, String firstName, String patronymic, int departmentNumber, int salary) {
+        id = idNumber++;
+
         this.lastName = lastName;
         this.firstName = firstName;
         this.patronymic = patronymic;
@@ -18,7 +20,15 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Integer getId() {
+    public void setDepartmentNumber(int departmentNumber) {
+        this.departmentNumber = departmentNumber;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -34,31 +44,24 @@ public class Employee {
         return patronymic;
     }
 
-    public Integer getDepartmentNumber() {
+    public int getDepartmentNumber() {
         return departmentNumber;
     }
 
-    public Integer getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setDepartmentNumber(Integer departmentNumber) {
-        this.departmentNumber = departmentNumber;
-    }
-
-    public void setSalary(Integer salary) {
-        this.salary = salary;
-    }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(id, employee.id) && Objects.equals(lastName, employee.lastName) && Objects.equals(firstName, employee.firstName) && Objects.equals(patronymic, employee.patronymic) && Objects.equals(departmentNumber, employee.departmentNumber) && Objects.equals(salary, employee.salary);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, lastName, firstName, patronymic, departmentNumber, salary);
+    public String toString() {
+        return "id=" + id +
+                " Фамилия- " + lastName +
+                " Имя- " + firstName +
+                " Отчество- " + patronymic +
+                ", отдел №" + departmentNumber +
+                ", зарплата- " + salary + " руб.";
     }
 }
+
+
